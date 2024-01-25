@@ -20,7 +20,10 @@ namespace CDC8600
 	    uint8_t Xj
 	)
 	{
-	    assert(false);
+	    assert(Xj < 16);
+            if (PROC.X(Xj).i() > 0)
+                return true;
+            return false;
 	}
 	
         void xkj
@@ -41,7 +44,18 @@ namespace CDC8600
 	    uint8_t Xk
 	)
 	{
-	    assert(false);
+	    assert(Xi < 16);
+	    assert(Xj < 16);
+	    assert(Xk < 16);
+            i64 addr_offset = PROC.X(Xj).i() + PROC.X(Xk).i();
+            if (addr_offset >= PROC.FL().u()*256 || addr_offset < 0) {
+                /* Bad case */
+                PROC._XA = PROC.XA().u();
+                PROC.cond()(2) = true;
+            } else {
+                /* Good case */
+                PROC.X(Xi).u() = MEM[PROC.RA().u()*256 + addr_offset].u();
+            }
 	}
 
         void sdjki
@@ -51,7 +65,18 @@ namespace CDC8600
 	    uint8_t Xk
 	)
 	{
-	    assert(false);
+	    assert(Xi < 16);
+	    assert(Xj < 16);
+	    assert(Xk < 16);
+            i64 addr_offset = PROC.X(Xj).i() + PROC.X(Xk).i();
+            if (addr_offset >= PROC.FL().u()*256 || addr_offset < 0) {
+                /* Bad case */
+                PROC._XA = PROC.XA().u();
+                PROC.cond()(2) = true;
+            } else {
+                /* Good case */
+                MEM[PROC.RA().u()*256 + addr_offset].u() = PROC.X(Xi).u();
+            }
 	}
 
         void isjki
@@ -61,7 +86,11 @@ namespace CDC8600
 	    uint8_t Xk
 	)
 	{
-	    assert(false);
+	    assert(Xi < 16);
+	    assert(Xj < 16);
+	    assert(Xk < 16);
+            // One's complement :/
+            PROC.X(Xi).u() = ((unsigned long) -1) & (PROC.X(Xj).u() + PROC.X(Xk).u());
 	}
 	
         void idjkj
@@ -70,7 +99,9 @@ namespace CDC8600
 	    uint8_t k
 	)
 	{
-	    assert(false);
+	    assert(Xj < 16);
+	    assert(k < 16);
+            PROC.X(Xj).i() = PROC.X(Xj).i() - k;
 	}
 
 	void idzkj
@@ -79,7 +110,9 @@ namespace CDC8600
 	   uint8_t Xk
 	)
 	{
-	    assert(false);
+	    assert(Xj < 16);
+	    assert(Xk < 16);
+            PROC.X(Xj).i() = -PROC.X(Xk).i();
 	}
 
 	void isjkj
@@ -88,7 +121,9 @@ namespace CDC8600
 	    uint8_t k
 	)
 	{
-	    assert(false);
+	    assert(Xj < 16);
+	    assert(k < 16);
+            PROC.X(Xj).i() = PROC.X(Xj).i() + k;
 	}
 
 	void ipjkj
@@ -97,7 +132,10 @@ namespace CDC8600
 	    uint8_t Xk
 	)
 	{
-	    assert(false);
+	    assert(Xj < 16);
+	    assert(Xk < 16);
+
+            PROC.X(Xj).i() = ((long long) -1) & (PROC.X(Xj).i() * PROC.X(Xk).i());
 	}
 
 	void rdKj
