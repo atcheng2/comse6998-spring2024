@@ -91,8 +91,8 @@ namespace CDC8600
 	    assert(Xi < 16);
 	    assert(Xj < 16);
 	    assert(Xk < 16);
-            // One's complement :/
-            PROC.X(Xi).u() = ((unsigned long) -1) & (PROC.X(Xj).u() + PROC.X(Xk).u());
+            // Use 2's complement
+            PROC.X(Xi).i() = PROC.X(Xj).i() + PROC.X(Xk).i();
 	}
 	
         void idjkj
