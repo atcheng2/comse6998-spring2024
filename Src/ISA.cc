@@ -47,8 +47,10 @@ namespace CDC8600
 	    assert(Xi < 16);
 	    assert(Xj < 16);
 	    assert(Xk < 16);
-            i64 addr_offset = PROC.X(Xj).i() + PROC.X(Xk).i();
-            if (addr_offset >= PROC.FL().u()*256 || addr_offset < 0) {
+
+            // Consider addr_offset as a 20-bit offset
+            i64 addr_offset = 0xfffff & (PROC.X(Xj).i() + PROC.X(Xk).i());
+            if (addr_offset >= PROC.FL().u()*256) {
                 /* Bad case */
                 PROC._XA = PROC.XA().u();
                 PROC.cond()(2) = true;
