@@ -91,8 +91,9 @@ namespace CDC8600
 	    assert(Xi < 16);
 	    assert(Xj < 16);
 	    assert(Xk < 16);
-            // One's complement :/
-            PROC.X(Xi).u() = ((unsigned long) -1) & (PROC.X(Xj).u() + PROC.X(Xk).u());
+            // One's complement - need to keep track of carry
+            u64 carry = 0xffffffffffffffff - PROC.X(Xj).u() < PROC.X(Xk).u() ? 1 : 0;
+            PROC.X(Xi).u() = PROC.X(Xj).u() + PROC.X(Xk).u() + carry;
 	}
 	
         void idjkj
