@@ -2,7 +2,12 @@ BLAS_1		= dcopy zcopy drot zdrot zaxpy dscal zdotu zswap ddot zdotc idamax dasum
 BLAS		= ${BLAS_1}
 TESTS 		= ${BLAS}
 CCC			= g++
-CCFLAGS		= -g -O0 -I../Include
+NFPU?=2
+NFXU?=2
+NBRU?=2
+NLDU?=2
+NSTU?=2
+CCFLAGS		= -g -O0 -I../Include -DNFPU=${NFPU} -DNFXU=${NFXU} -DNBRU=${NBRU} -DNLDU=${NLDU} -DNSTU=${NSTU}
 BLAS_DEPS 	= ../Src/blas
 SRC_DEPS	= ../Src/CDC8600.cc ../Src/ISA.cc
 INC_DEPS	= ../Include/CDC8600.hh

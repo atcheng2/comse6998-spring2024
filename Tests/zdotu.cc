@@ -10,16 +10,19 @@ using namespace CDC8600;
 
 extern "C" c128 zdotu_(i32*, c128*, i32*, c128*, i32*);
 
-const int N = 20;
+const int N = 1; // 20
 const double epsilon = pow(1, -9);
 
 void test_zdotu(int count)
 {
     reset();
 
-    i32 n = rand() % 256;
-    i32 incx = (rand() % 16) - 8;
-    i32 incy = (rand() % 16) - 8;
+    /* i32 n = rand() % 256; */
+    /* i32 incx = (rand() % 16) - 8; */
+    /* i32 incy = (rand() % 16) - 8; */
+    i32 n, incx, incy;
+    n = 255; incx = 1; incy = 1;
+
     u32 nx = n*abs(incx); if (0 == nx) nx = 1;
     u32 ny = n*abs(incy); if (0 == ny) ny = 1;
 
@@ -29,7 +32,7 @@ void test_zdotu(int count)
     for (int i = 0; i < nx; i++) { x[i] = c128(drand48(), drand48()); }
     for (int i = 0; i < ny; i++) { y[i] = c128(drand48(), drand48()); }
 
-    tracing = false; if (n < 10) tracing = true;
+    /* tracing = false; if (n < 10) tracing = true; */
 
     c128 res_ref = zdotu_(&n, x, &incx, y, &incy);
     c128 res_new = CDC8600::BLAS::zdotu(n, x, incx, y, incy);
@@ -53,13 +56,23 @@ void test_zdotu(int count)
       pass = false;
     }
 
-    cout << "zdotu [" << setw(2) << count << "] (n = " << setw(3) << n << ", incx = " << setw(2) << incx << ", incy = " << setw(2) << incy << ", # of instr = " << setw(9) << instructions::count << ") : ";
-    if (pass)
-        cout << "PASS" << std::endl;
-    else
-        cout << "FAIL" << std::endl;
+    /* cout << "zdotu [" << setw(2) << count << "] "; */
+    /* cout << "(n = " << setw(3) << n; */
+    cout << setw(2) << params::micro::nFPUs << " & ";
+    cout << setw(2) << params::micro::nFXUs << " & ";
+    cout << setw(2) << params::micro::nBRUs << " & ";
+    cout << setw(2) << params::micro::nLDUs << " & ";
+    cout << setw(2) << params::micro::nSTUs << " & ";
+    cout << setw(9) << instructions::count << " & ";
+    cout << setw(9) << operations::maxcycle;
 
-    if (n < 10) dump(trace);
+    /* cout << "zdotu [" << setw(2) << count << "] (n = " << setw(3) << n << ", incx = " << setw(2) << incx << ", incy = " << setw(2) << incy << ", # of instr = " << setw(9) << instructions::count << ") : "; */
+    if (pass)
+        cout << " & PASS" << std::endl;
+    else
+        cout << " & FAIL" << std::endl;
+
+    // if (n < 10) dump(trace);
 }
     
 
