@@ -431,7 +431,7 @@ namespace CDC8600
 		fadd(u08 i, u08 j, u08 k) { _i = i; _j = j; _k = k; }
 		u64 ready() const { return max(REGready[_k], REGready[_j]); }
 		u64 target(u64 cycle) { REGready[_i] = cycle; }
-		u64 latency() const { return 2; }
+		u64 latency() const { return 4; }
 		u64 throughput() const { return 2; }
 		string mnemonic() const { return "fadd"; }
 		string dasm() const { return mnemonic() + "(" + to_string(_i) + ", " + to_string(_j) + ", " + to_string(_k) + ")"; }
@@ -448,7 +448,7 @@ namespace CDC8600
 		fmul(u08 i, u08 j, u08 k) { _i = i; _j = j; _k = k; }
 		u64 ready() const { return max(REGready[_k], REGready[_j]); }
 		u64 target(u64 cycle) { REGready[_i] = cycle; }
-		u64 latency() const { return 2; }
+		u64 latency() const { return 8; }
 		u64 throughput() const { return 2; }
 		string mnemonic() const { return "fmul"; }
 		string dasm() const { return mnemonic() + "(" + to_string(_i) + ", " + to_string(_j) + ", " + to_string(_k) + ")"; }
@@ -465,7 +465,7 @@ namespace CDC8600
 		fsub(u08 i, u08 j, u08 k) { _i = i; _j = j; _k = k; }
 		u64 ready() const { return max(REGready[_k], REGready[_j]); }
 		u64 target(u64 cycle) { REGready[_i] = cycle; }
-		u64 latency() const { return 2; }
+		u64 latency() const { return 4; }
 		u64 throughput() const { return 2; }
 		string mnemonic() const { return "fsub"; }
 		string dasm() const { return mnemonic() + "(" + to_string(_i) + ", " + to_string(_j) + ", " + to_string(_k) + ")"; }
