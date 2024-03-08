@@ -75,6 +75,13 @@ void test_dgemv_td(int count)
     else
         cout << "FAIL" << std::endl;
 
+    u64 max_c = PROC[0].op_maxcycle;
+    for (u32 p = 1; p < params::Proc::N; p++) {
+        if (max_c < PROC[p].op_maxcycle)
+            max_c = PROC[p].op_maxcycle;
+    }
+    cerr << max_c << ", ";
+
     /* if (n < 10) dump(PROC[0].trace); */
 }
 
@@ -84,5 +91,7 @@ int main()
     {
         test_dgemv_td(i);
     }
+    cerr << '\n';
+
     return 0;
 }

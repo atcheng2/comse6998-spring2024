@@ -54,7 +54,7 @@ namespace CDC8600
 
 	namespace Proc
 	{
-	    const u32 	N = 4;		// Number of processors
+	    const u32 	N = 8;		// Number of processors
 	} // namespace Proc
 
 	namespace L1

@@ -1,0 +1,26 @@
+Test 1
+dgemv_td [ 0] (m = 103, n = 198, alpha = 0.00000, lda = 208, incx = -5, beta = 0.00099, incy = -7, # of instr =    249293        0        0        0        0        0        0        0, # of cycles =    171485        0        0        0        0        0        0        0) : PASS
+Test 1
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       295        0        0        0        0        0        0        0, # of cycles =       300        0        0        0        0        0        0        0) : PASS
+
+Test 2
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       169      126        0        0        0        0        0        0, # of cycles =       175      130        0        0        0        0        0        0) : PASS
+
+Test 3
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       169       63       63        0        0        0        0        0, # of cycles =       168       74       72        0        0        0        0        0) : PASS
+
+Test 4
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       106       63       63       63        0        0        0        0, # of cycles =       112       74       72       72        0        0        0        0) : PASS
+
+Test 5
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       106       63       63       63        0        0        0        0, # of cycles =       112       74       72       72        0        0        0        0) : PASS
+
+Test 6
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       106       63       63       63        0        0        0        0, # of cycles =       112       74       72       72        0        0        0        0) : PASS
+
+Test 7
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       106       63       63       63        0        0        0        0, # of cycles =       112       74       72       72        0        0        0        0) : PASS
+
+Test 8
+dgemv_td [ 0] (m =   4, n =   4, alpha = 0.00000, lda = 109, incx = -5, beta = 0.00099, incy = -7, # of instr =       106       63       63       63        0        0        0        0, # of cycles =       112       74       72       72        0        0        0        0) : PASS
+
