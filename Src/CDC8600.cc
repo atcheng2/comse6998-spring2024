@@ -527,7 +527,9 @@ namespace CDC8600
             if (0 == PROC[me()].instr_count) dumpheaderop();
             dump(PROC[me()].instr_count, instr);
         }
+#ifndef NO_TIMING
         instr->ops();                                                                   // process the internal operations of this instruction
+#endif
         PROC[me()].instr_count++;                                                       // increment instruction counter
         return PROC[me()].instr_target;                                                 // return true if a branch is taken
     }
